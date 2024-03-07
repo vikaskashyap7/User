@@ -15,7 +15,7 @@ const Home = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/v1/getUser');
+      const response = await axios.get('https://user-c0yj.onrender.com/api/v1/getUser');
       console.log(response.data.data);
       setUsers(response.data.data);
     } catch (error) {
@@ -33,7 +33,7 @@ const Home = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        await axios.post('http://localhost:5000/api/v1/postUser', formData);
+        await axios.post('https://user-c0yj.onrender.com/api/v1/postUser', formData);
         fetchUsers();
         setFormData({ name: '', phoneNumber: '', email: '', hobbies: '' });
       } catch (error) {
@@ -75,9 +75,9 @@ const Home = () => {
     const emailData = selectedUsers.map(user => `${user.name}, ${user.phoneNumber}, ${user.email}, ${user.hobbies}`).join('\n');
 
     try {
-      await axios.post('http://localhost:5000/api/v1/send-email', {
+      await axios.post('https://user-c0yj.onrender.com/api/v1/send-email', {
         email: 'vikaskashyap1334@gmail.com',
-        subject: 'Selected Users Data',
+        subject: 'Users Data',
         text: emailData
       });
       alert('Email sent successfully');
@@ -89,7 +89,7 @@ const Home = () => {
   const handleUpdate = async (id) => {
     if (validateForm()) {
       try {
-        await axios.put(`http://localhost:5000/api/v1/User/${id}`, formData);
+        await axios.put(`https://user-c0yj.onrender.com/api/v1/User/${id}`, formData);
         fetchUsers();
         setFormData({ name: '', phoneNumber: '', email: '', hobbies: '' });
       } catch (error) {
@@ -100,7 +100,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/v1/User/${id}`);
+      await axios.delete(`https://user-c0yj.onrender.com/api/v1/User/${id}`);
       fetchUsers();
     } catch (error) {
       console.error('Error deleting user:', error);
